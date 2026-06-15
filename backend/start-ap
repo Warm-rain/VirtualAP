@@ -741,12 +741,12 @@ provision_openwrt() {
 
     if ds_run iptables-legacy --version >/dev/null 2>&1; then
         # iptables-legacy world. If the container ships the iptables firewall
-        # (fw3) let it own NAT via its zones - our OpenWrt image bakes a
-        # 'vaplan' -> wan masqueraded zone, so a reload is all it takes.
-        # Otherwise install the MASQUERADE rule ourselves.
+        # (fw3) let it own NAT via its zones - our OpenWrt image puts 'vaplan'
+        # in an isolated 'guest' zone forwarded out the masqueraded wan zone,
+        # so a reload is all it takes. Otherwise install MASQUERADE ourselves.
         if ds_run ls /etc/init.d/firewall >/dev/null 2>&1; then
             ds_run /etc/init.d/firewall reload >/dev/null 2>&1
-            log "OpenWrt firewall (fw3) reloaded - '$VAP_PORT' masqueraded via its wan zone."
+            log "OpenWrt firewall (fw3) reloaded - '$VAP_PORT' masqueraded out the wan zone."
         else
             ds_run iptables-legacy -t nat -D POSTROUTING -s "$IP_NET" ! -d "$IP_NET" -j MASQUERADE 2>/dev/null
             if ds_run iptables-legacy -t nat -A POSTROUTING -s "$IP_NET" ! -d "$IP_NET" -j MASQUERADE; then

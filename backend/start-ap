@@ -20,7 +20,7 @@ LOG_FILE="${BASE_DIR}/logs/ap.log"
 HOSTAPD_LOG="${BASE_DIR}/logs/hostapd.log"
 DNSMASQ_LOG="${BASE_DIR}/logs/dnsmasq.log"
 
-# Static AP-stack binaries (replace the old Alpine chroot tools)
+# Static AP-stack binaries (iw/hostapd/dnsmasq)
 HOSTAPD="${BIN_DIR}/hostapd"
 IW="${BIN_DIR}/iw"
 DNSMASQ="${BIN_DIR}/dnsmasq"

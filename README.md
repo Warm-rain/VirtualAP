@@ -104,4 +104,4 @@ Licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE).
 ---
 
 > [!NOTE]
-> **Heritage & assistance.** The backend's wireless stack originally ran inside an Alpine chroot - a technique borrowed from the [Ubuntu-Chroot](https://github.com/ravindu644/Ubuntu-Chroot) project - before moving to fully-static binaries that run directly on Android. The Android front-end is developed with the assistance of an AI companion.
+> **Heritage & assistance.** VirtualAP grew out of the [`start-hotspot`](https://github.com/ravindu644/Ubuntu-Chroot/blob/main/tools/start-hotspot) script from my own [Ubuntu-Chroot](https://github.com/ravindu644/Ubuntu-Chroot) project - the original idea and core of this backend - now reworked into fully-static binaries that run directly on Android. The Android front-end is developed with the assistance of an AI companion.

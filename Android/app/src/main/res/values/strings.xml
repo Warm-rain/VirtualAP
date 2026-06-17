@@ -77,7 +77,7 @@
     <!-- About Section -->
     <string name="about_header">About</string>
     <string name="about_virtualap">About VirtualAP</string>
-    <string name="about_description">Turn your rooted Android phone into a real wireless access point — powered by a lightweight Alpine chroot running hostapd and dnsmasq.</string>
+    <string name="about_description">Turn your rooted Android phone into a real wireless access point — powered by fully-static hostapd and dnsmasq binaries that run directly on Android.</string>
     <string name="maintainer_header">Maintainer</string>
     <string name="maintainer_name">ravindu644</string>
     <string name="maintainer_role">Maintainer</string>

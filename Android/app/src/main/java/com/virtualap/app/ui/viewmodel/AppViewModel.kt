@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.virtualap.app.ui.theme.ThemePalette
 import com.virtualap.app.util.APManager
+import com.virtualap.app.util.AppLanguage
 import com.virtualap.app.util.PreferencesManager
 import com.virtualap.app.util.RootChecker
 import com.virtualap.app.util.RootStatus
@@ -35,18 +36,23 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private var _dynamicColor      by mutableStateOf(prefs.useDynamicColor)
     private var _amoledMode        by mutableStateOf(prefs.amoledMode)
     private var _themePalette      by mutableStateOf(ThemePalette.fromName(prefs.themePalette))
+    private var _appLanguage       by mutableStateOf(AppLanguage.fromPref(prefs.appLanguage))
 
     val followSystemTheme: Boolean    get() = _followSystemTheme
     val darkThemeEnabled:  Boolean    get() = _darkThemeEnabled
     val dynamicColor:      Boolean    get() = _dynamicColor
     val amoledMode:        Boolean    get() = _amoledMode
     val themePalette:      ThemePalette get() = _themePalette
+    val appLanguage:       AppLanguage  get() = _appLanguage
 
     fun setFollowSystemTheme(v: Boolean) { _followSystemTheme = v; prefs.followSystemTheme = v }
     fun setDarkTheme(v: Boolean)         { _darkThemeEnabled  = v; prefs.darkTheme = v }
     fun setDynamicColor(v: Boolean)      { _dynamicColor      = v; prefs.useDynamicColor = v }
     fun setAmoledMode(v: Boolean)        { _amoledMode        = v; prefs.amoledMode = v }
     fun setThemePalette(p: ThemePalette) { _themePalette      = p; prefs.themePalette = p.name }
+
+    /** Persist the choice; the caller recreates the activity to apply it. */
+    fun setAppLanguage(l: AppLanguage)   { _appLanguage       = l; prefs.appLanguage = l.prefValue }
 
     init {
         if (prefs.hasSeenRootCheck && prefs.rootAvailable) {

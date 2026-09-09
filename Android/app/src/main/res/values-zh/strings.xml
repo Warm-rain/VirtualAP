@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VirtualAP</string>
+    <string name="root_check_title">需要 Root 权限</string>
+    <string name="root_check_body">VirtualAP 需要 Root 权限来创建虚拟网络接口并管理热点。</string>
+    <string name="root_denied">Root 权限被拒绝</string>
+    <string name="setup_title">正在设置 VirtualAP</string>
+    <string name="done">完成</string>
+    <string name="retry">重试</string>
+    <string name="copy_logs">复制日志</string>
+    <string name="logs_copied">日志已复制到剪贴板</string>
+    <string name="clear_logs">清空日志</string>
+    <string name="terminal_logs">终端日志</string>
+    <string name="close">关闭</string>
+    <string name="back">返回</string>
+    <string name="start_ap">启动接入点</string>
+    <string name="stop_ap">停止接入点</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">设置</string>
+    <string name="appearance_header">外观</string>
+    <string name="follow_system_theme_label">跟随系统主题</string>
+    <string name="follow_system_theme_desc">自动匹配系统的浅色/深色模式</string>
+    <string name="dark_mode_label">深色模式</string>
+    <string name="dark_mode_desc">强制使用深色主题，忽略系统设置</string>
+    <string name="amoled_mode_label">AMOLED 模式</string>
+    <string name="amoled_mode_desc">纯黑背景，节省 OLED 屏幕电量</string>
+    <string name="dynamic_color_label">动态取色</string>
+    <string name="dynamic_color_desc">根据壁纸取色（Material You）</string>
+    <string name="color_palette_header">配色方案</string>
+    <string name="language_header">语言</string>
+    <string name="language_label">应用语言</string>
+    <string name="language_system">跟随系统</string>
+    <string name="language_en">English</string>
+    <string name="language_zh">中文</string>
+
+    <!-- Main Screen -->
+    <string name="app_subtitle">你的手机，真正的路由器</string>
+    <string name="status_running">运行中</string>
+    <string name="status_stopped">已停止</string>
+    <string name="access_point_title">接入点</string>
+    <string name="ssid_label">网络名称 (SSID)</string>
+    <string name="password_label">密码（8–63 个字符）</string>
+    <string name="password_length_error">长度必须为 8–63 个字符</string>
+    <string name="hide_password_desc">隐藏密码</string>
+    <string name="show_password_desc">显示密码</string>
+    <string name="band_label">频段</string>
+    <string name="channel_label">信道</string>
+    <string name="width_label">信道带宽</string>
+    <string name="security_label">加密方式</string>
+    <string name="security_wpa3_hint">WPA3 可能不是在所有设备上都能正常工作。部分手机能开启热点但客户端无法连接或获取不到 IP，较老的设备也可能完全无法加入。为获得最佳兼容性，请使用 WPA2-Personal。</string>
+    <string name="upstream_interface_label">上游接口</string>
+    <string name="upstream_auto">自动（推荐）</string>
+    <string name="upstream_card_title">上游网络</string>
+    <string name="container_label">容器</string>
+    <string name="container_upstream_desc">由该 Droidspaces 容器为热点管理 DHCP、DNS 和 NAT。</string>
+    <string name="interface_upstream_desc">VirtualAP 通过此接口处理 DHCP、DNS 和 NAT。</string>
+    <string name="managed_label">托管</string>
+    <string name="refresh_interfaces_desc">刷新接口列表</string>
+    <string name="starting">正在启动…</string>
+    <string name="stopping">正在停止…</string>
+    <string name="view_logs">查看日志</string>
+    <string name="enter_ssid_prompt">输入网络名称即可开始</string>
+    <string name="active_network_title">当前网络</string>
+    <string name="since_time">自 %1$s 起</string>
+    <string name="gateway_label">网关</string>
+    <string name="upstream_label">上游</string>
+    <string name="interface_label">接口</string>
+    <string name="running_log_title">运行中…</string>
+    <string name="logs_title">日志</string>
+    <string name="no_logs_msg">暂无日志输出。</string>
+
+    <!-- Setup Screen -->
+    <string name="installation_complete">安装完成</string>
+    <string name="installation_failed">安装失败</string>
+    <string name="install_logs_label">VirtualAP 安装日志</string>
+
+    <!-- Root Check Screen -->
+    <string name="checking_root">正在检查 Root 权限…</string>
+    <string name="auto_label">自动</string>
+
+    <!-- About Section -->
+    <string name="about_header">关于</string>
+    <string name="about_virtualap">关于 VirtualAP</string>
+    <string name="about_description">把已 root 的安卓手机变成真正的无线接入点 —— 由可直接运行在 Android 上的全静态 hostapd 和 dnsmasq 二进制驱动。</string>
+    <string name="maintainer_header">维护者</string>
+    <string name="maintainer_name">ravindu644</string>
+    <string name="maintainer_role">维护者</string>
+    <string name="source_code">源代码</string>
+    <string name="github">GitHub</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="unknown">未知</string>
+
+    <!-- Hotspot Settings / Advanced -->
+    <string name="hotspot_settings_header">热点设置</string>
+    <string name="advanced_settings_title">高级</string>
+    <string name="hidden_ssid_label">隐藏 SSID</string>
+    <string name="hidden_ssid_desc">不广播网络名称 —— 客户端需手动添加网络连接</string>
+    <string name="pmf_label">受保护的管理帧</string>
+    <string name="pmf_desc">为 WPA2 增加 802.11w 保护。如果较老的设备无法连接，请保持关闭</string>
+    <string name="gateway_ip_label">网关 IP</string>
+    <string name="gateway_ip_desc">留空使用默认值（192.168.42.1）</string>
+    <string name="gateway_ip_placeholder">192.168.42.1</string>
+    <string name="gateway_ip_error">请输入有效的 IPv4 地址（如 192.168.42.1）</string>
+    <string name="dns_servers_label">DNS 服务器</string>
+    <string name="dns_servers_desc">自定义上游 DNS 服务器（逗号分隔）。留空为自动。</string>
+    <string name="dns_servers_placeholder">例如 1.1.1.1, 8.8.8.8</string>
+    <string name="dns_servers_error">请输入有效的 IPv4 地址，并用逗号分隔</string>
+
+    <!-- Wi-Fi QR sheet -->
+    <string name="qr_title">Wi-Fi 二维码</string>
+    <string name="qr_scan_hint">用手机相机扫码即可加入</string>
+</resources>

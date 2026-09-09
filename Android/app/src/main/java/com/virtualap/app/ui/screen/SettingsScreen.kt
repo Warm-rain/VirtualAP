@@ -1,5 +1,6 @@
 package com.virtualap.app.ui.screen
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -43,6 +44,7 @@ import com.virtualap.app.R
 import com.virtualap.app.ui.component.SwitchItem
 import com.virtualap.app.ui.theme.ThemePalette
 import com.virtualap.app.ui.viewmodel.AppViewModel
+import com.virtualap.app.util.AppLanguage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,7 +54,9 @@ fun SettingsScreen(
 ) {
     // About dialog state
     var showAboutDialog by remember { mutableStateOf(false) }
+    var showLanguageDialog by remember { mutableStateOf(false) }
     val focusManager = LocalFocusManager.current
+    val context = LocalContext.current
 
     Scaffold(
         modifier = Modifier
@@ -154,6 +158,31 @@ fun SettingsScreen(
 
             item { HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp)) }
 
+            // Language Section
+            item {
+                SettingsSectionHeader(stringResource(R.string.language_header))
+                SettingsCard {
+                    ListItem(
+                        leadingContent = {
+                            Icon(imageVector = Icons.Default.Language, contentDescription = null)
+                        },
+                        headlineContent = {
+                            Text(
+                                text = stringResource(R.string.language_label),
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        },
+                        supportingContent = {
+                            Text(stringResource(appVm.appLanguage.displayNameRes))
+                        },
+                        modifier = Modifier.clickable { showLanguageDialog = true }
+                    )
+                }
+            }
+
+            item { HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp)) }
+
             // About Section
             item {
                 SettingsSectionHeader(stringResource(R.string.about_header))
@@ -184,6 +213,67 @@ fun SettingsScreen(
     if (showAboutDialog) {
         AboutDialog(onDismiss = { showAboutDialog = false })
     }
+
+    // Language Dialog
+    if (showLanguageDialog) {
+        LanguageDialog(
+            selected = appVm.appLanguage,
+            onSelect = { language ->
+                showLanguageDialog = false
+                if (language != appVm.appLanguage) {
+                    appVm.setAppLanguage(language)
+                    // Re-run attachBaseContext with the persisted language so
+                    // every string on every screen switches at once.
+                    (context as? Activity)?.recreate()
+                }
+            },
+            onDismiss = { showLanguageDialog = false }
+        )
+    }
+}
+
+@Composable
+private fun LanguageDialog(
+    selected: AppLanguage,
+    onSelect: (AppLanguage) -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.language_label)) },
+        text = {
+            Column {
+                AppLanguage.entries.forEach { language ->
+                    ListItem(
+                        headlineContent = {
+                            Text(
+                                text = stringResource(language.displayNameRes),
+                                fontWeight = if (language == selected) FontWeight.Bold else FontWeight.Normal,
+                                color = if (language == selected)
+                                    MaterialTheme.colorScheme.primary
+                                else
+                                    MaterialTheme.colorScheme.onSurface
+                            )
+                        },
+                        trailingContent = {
+                            if (language == selected) {
+                                Icon(
+                                    imageVector = Icons.Default.Check,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        },
+                        modifier = Modifier.clickable { onSelect(language) }
+                    )
+                }
+            }
+        },
+        confirmButton = {},
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) }
+        }
+    )
 }
 
 @Composable

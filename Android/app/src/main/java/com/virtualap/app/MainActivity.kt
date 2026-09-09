@@ -26,11 +26,21 @@ import com.virtualap.app.ui.theme.VirtualAPTheme
 import com.virtualap.app.ui.viewmodel.APViewModel
 import com.virtualap.app.ui.viewmodel.AppViewModel
 import com.virtualap.app.ui.viewmodel.InstallStatus
+import com.virtualap.app.util.AppLanguage
 import com.virtualap.app.util.PreferencesManager
 import com.virtualap.app.util.RootStatus
 import com.virtualap.app.util.VirtualAPInstaller
+import android.content.Context
 
 class MainActivity : ComponentActivity() {
+    // attachBaseContext runs before the ViewModel reads the pref, so the very
+    // first composition already uses the persisted language. After an in-app
+    // language change, recreate() re-runs this with the new value.
+    override fun attachBaseContext(newBase: Context) {
+        val language = AppLanguage.fromPref(PreferencesManager.readLanguageRaw(newBase))
+        super.attachBaseContext(AppLanguage.wrap(newBase, language))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

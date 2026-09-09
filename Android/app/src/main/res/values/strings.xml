@@ -28,6 +28,11 @@
     <string name="dynamic_color_label">Dynamic color</string>
     <string name="dynamic_color_desc">Derive colors from your wallpaper (Material You)</string>
     <string name="color_palette_header">Color palette</string>
+    <string name="language_header">Language</string>
+    <string name="language_label">App language</string>
+    <string name="language_system">System default</string>
+    <string name="language_en">English</string>
+    <string name="language_zh">中文</string>
 
     <!-- Main Screen -->
     <string name="app_subtitle">Your phone, an actual router</string>
@@ -84,6 +89,7 @@
     <string name="source_code">Source Code</string>
     <string name="github">GitHub</string>
     <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string name="unknown">Unknown</string>
 
     <!-- Hotspot Settings / Advanced -->

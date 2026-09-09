@@ -49,6 +49,14 @@ class PreferencesManager private constructor(context: Context) {
             prefs.edit().putString(Constants.KEY_THEME_PALETTE, value).apply()
         }
 
+    // App language: "system" (follow the device), "en", or "zh".
+    var appLanguage: String
+        get() = prefs.getString(Constants.KEY_APP_LANGUAGE, AppLanguage.SYSTEM.prefValue)
+            ?: AppLanguage.SYSTEM.prefValue
+        set(value) {
+            prefs.edit().putString(Constants.KEY_APP_LANGUAGE, value).apply()
+        }
+
     var apSsid: String
         get() = prefs.getString(Constants.KEY_AP_SSID, "") ?: ""
         set(value) { prefs.edit().putString(Constants.KEY_AP_SSID, value).apply() }
@@ -153,5 +161,15 @@ class PreferencesManager private constructor(context: Context) {
                 }
             }
         }
+
+        /**
+         * Raw language read that is safe in attachBaseContext, where
+         * context.applicationContext is not guaranteed to be available yet.
+         */
+        @JvmStatic
+        fun readLanguageRaw(context: Context): String =
+            context.getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE)
+                .getString(Constants.KEY_APP_LANGUAGE, AppLanguage.SYSTEM.prefValue)
+                ?: AppLanguage.SYSTEM.prefValue
     }
 }

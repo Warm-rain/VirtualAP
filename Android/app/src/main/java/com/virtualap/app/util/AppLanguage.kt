@@ -2,6 +2,7 @@ package com.virtualap.app.util
 
 import android.content.Context
 import android.content.res.Configuration
+import com.virtualap.app.R
 import java.util.Locale
 
 /**
@@ -24,7 +25,7 @@ enum class AppLanguage(val prefValue: String, val displayNameRes: Int) {
         /** Wrap [context] so its resources resolve against [language]. */
         fun wrap(context: Context, language: AppLanguage): Context {
             if (language == SYSTEM) return context
-            val locale = Locale.forLanguageTag(language.code)
+            val locale = Locale.forLanguageTag(language.prefValue)
             Locale.setDefault(locale)
             val config = Configuration(context.resources.configuration).apply {
                 setLocales(android.os.LocaleList(locale))
